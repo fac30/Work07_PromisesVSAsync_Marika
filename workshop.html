@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Fetch & Promises</title>
+  </head>
+  <body>
+    <h1>Open the console</h1>
+    <script>
+      //  Challenge 1
+      // const pokePromise = fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+      // console.log(pokePromise);
+
+      //  Challenge 2
+      // const pokePromise = fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+      // pokePromise.then((result) =>console.log(result));
+
+      //  challenge 3
+      // const pokePromise = fetch("https://pokeapi.co/api/v2/pokemon/pikachu");
+      // pokePromise
+      // .then((response) => response.json())
+      // .then((pikachu) =>console.log(pikachu));
+
+      // Challenge 4
+      // const pokePromise = fetch();
+      // pokePromise
+      // .then((response) => response.json())
+      // .then((pikachu) =>console.log(pikachu))
+      // .catch((error) => console.log(error));
+
+      //  Task 1
+      // function getUser(username) {
+      //   return fetch(`https://api.github.com/users/${username}`)
+      //   .then((response) => response.json());
+      // };
+
+      // Usage 
+      // getUser("oliverjam")
+      // .then((user) => console.log(user))
+      // .catch((error) => console.error(error));
+
+      // Task 2
+      // function getUser(username) {
+      //   return fetch(`https://api.github.com/users/${username}`)
+      //   .then((response) => {
+      //     if(!response.ok) {
+      //       throw new Error(`User not found: ${username}`);
+      //     }
+      //     return response.json();
+      //   })
+      // }
+
+      // function getRepos(user) {
+      //   return fetch(user.repos_url)
+      //   .then((response => {
+      //     if(!response.ok) {
+      //       throw new Error('Failed to fetch repositories');
+      //     }
+      //     return response.json();
+      //   }));
+      // }
+
+      // getUser("oliverjam")
+      // .then((user) => getRepos(user))
+      // .then((repos) => console.log(repos))
+      // .catch((error) => console.error(error));
+
+      // Task 3
+      function getUser(username) {
+  return fetch(`https://api.github.com/users/${username}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`User not found: ${username}`);
+      }
+      return response.json();
+    });
+}
+
+const usernames = ["oliverjam", "torvalds", "gaearon"];
+
+Promise.all(usernames.map(username => getUser(username)))
+  .then(users => {
+    console.log(users); // Logs an array of user objects
+  })
+  .catch(error => console.log(error));
+
+
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>
